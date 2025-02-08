@@ -1,0 +1,289 @@
+.home-container {
+    display: flex;
+    flex-direction: column-reverse; /* Default for small screens */
+    align-items: center;
+    justify-content: space-between;
+    padding: 2.5rem 1rem;
+    background-color: #f7f5fa;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Left Section */
+  .home-left {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .home-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #1f2937;
+  }
+  
+  .text-purple {
+    color: #7c3aed;
+  }
+  
+  .text-dark {
+    color: #1f2937;
+  }
+  
+  .home-description {
+    color: #6b7280;
+    margin-top: 1rem;
+  }
+  
+  .home-buttons {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Buttons */
+  .discover-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: #7c3aed;
+    color: white;
+    border-radius: 50rem;
+    transition: background 0.2s;
+  }
+  
+  .discover-btn:hover {
+    background-color: #6d28d9;
+  }
+  
+  .watch-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: white;
+    color: #374151;
+    border: 1px solid #e5e7eb;
+    border-radius: 50rem;
+    transition: background 0.2s;
+  }
+  
+  .watch-btn:hover {
+    background-color: #f3f4f6;
+  }
+  
+  /* Right Section */
+  .home-right {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  
+  .freelancer-img {
+    width: 30rem;
+    height: 30rem;
+    z-index: 10;
+    position: relative;
+    right: 14%;
+  }
+  
+  .shape {
+    position: absolute;
+    border-radius: 50%;
+  }
+  
+  .shape-3 {
+    top: 15%;
+    left: 25%;
+    width: 20rem;
+    height: 20rem;
+    background-color: #d8b4fe;
+  }
+  
+  .shape-4 {
+    top: 15%;
+    left: 70%;
+    width: 1.3rem;
+    height: 1.3rem;
+    background-color: #c084fc;
+    opacity: 0.5;
+  }
+  
+  .shape-5 {
+    bottom: 40%;
+    right: 15%;
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: #b15dff;
+  }
+  
+  .floating-box-dot {
+    display: none;
+  }
+  
+  .floating-box-dot2 {
+    position: relative;
+    left: 65%;
+    top: 150px;
+    height: 100px;
+    width: 100px;
+  }
+  
+  .floating-text {
+    font-weight: bold;
+    color: #374151;
+  }
+  
+  .floating-box-coin {
+    position: absolute;
+    bottom: 85%; /* Adjust to position */
+    right: 75%; /* Adjust to position */
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    transform: rotate(270deg);
+  }
+  
+  .floating-box::after {
+    content: "";
+    position: absolute;
+    bottom: 10px; /* Adjust the position to align it at the bottom */
+    left: -10px; /* Aligns it to the left */
+    width: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 20px solid white; /* Increase the height and rotate the arrow */
+  }
+  
+  .coin-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    transform: rotate(90deg);
+  }
+  
+  .freelancer-card {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
+    width: 20px;
+    position: absolute;
+    top: 65%;
+    left: 55%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
+  
+  .freelancer-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+  
+  .freelancer-info {
+    flex-grow: 1;
+    padding-left: 15px;
+  }
+  
+  .freelancer-info h3 {
+    margin: 0;
+    font-size: 15px;
+    color: black;
+  }
+  
+  .freelancer-info p {
+    font-size: 10px;
+    color: #000000;
+  }
+  
+  .freelancer-rating {
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+  }
+  
+  .star-icon {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .freelancer-actions {
+    display: flex;
+    gap: 5px;
+    justify-content: flex-end;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  .icon-btn {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+  
+  /* Media Queries */
+  @media (min-width: 1024px) {
+    .home-container {
+      flex-direction: row;
+      padding: 2.5rem;
+    }
+  
+    .home-left {
+      width: 50%;
+      text-align: left;
+    }
+  
+    .home-buttons {
+      flex-direction: row;
+    }
+  
+    .home-right {
+      width: 50%;
+      margin-top: 0;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .home-container {
+      flex-direction: column-reverse;
+      padding: 2.5rem 1rem;
+    }
+
+    .home-title{
+      font-size: 2rem;
+    }
+  
+    .home-left {
+      width: 100%;
+      text-align: center;
+    }
+  
+    .home-img {
+      width: 350px;
+      height: 300px;
+    }
+
+    .home-buttons {
+        flex-direction: row;
+        align-items: center;
+        justify-items: center;
+      }
+  
+    .home-right {
+      width: 100%;
+      margin-top: 2rem;
+    margin-bottom: 2rem;
+    }
+  }
+  

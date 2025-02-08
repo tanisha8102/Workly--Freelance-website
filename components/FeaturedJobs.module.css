@@ -1,0 +1,114 @@
+.container {
+    text-align: center;
+    padding: 2rem;
+    padding-top: 100px;
+    background-color: #f9f9f9;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: black;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  .jobGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .jobCard {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  
+  .jobCard:hover {
+    transform: translateY(-5px);
+  }
+
+  .jobIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .jobTitle {
+    font-size: 1.1rem;
+    color: black;
+    margin-bottom: 0.5rem;
+  }
+  
+  .companyName {
+    color: #4b47c8;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .salary {
+    color: #333;
+    font-size: 0.9rem;
+
+    margin-bottom: 0.5rem;
+  }
+  
+  .location {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .applyButton {
+    background-color: #f6eeff;
+    color: #4b47c8;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  
+  .applyButton:hover {
+    background-color: #4b47c8;
+    color:white;
+  }
+  
+  .viewMoreButton {
+    margin-top: 2rem;
+    background-color: #6c5ce7;
+    color: white;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .viewMoreButton:hover {
+    background-color: #4b47c8;
+  }
+  

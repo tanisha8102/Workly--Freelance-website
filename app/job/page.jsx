@@ -2,19 +2,15 @@
 
 import { FaPlay } from "react-icons/fa";
 import Image from "next/image";
-import homeimg from "../assets/home-img.png";
-import FeaturedJobs from "../components/FeaturedJobs";
-import HowItWorks from "../components/HowItWorks";
-import PricingPlan from "../components/Pricingplan";
-import BlogPage from "./blog/page";
-import Navbar from "../components/Navbar";
+import homeimg from "../../assets/home-img.png";
+import JobListings from "../../components/Joblisting.js"
 
-import "./styles/Home.css";
+import "../styles/Home.css";
 
-export default function Home() {
+
+export default function Job() {
   return (
     <div>
-      <Navbar />
       <div className="home-container">
         <div className="home-left">
           <h1 className="home-title">
@@ -36,16 +32,7 @@ export default function Home() {
           <Image src={homeimg} alt="Home Image" className="home-img" />
         </div>
       </div>
-
-      <HowItWorks />
-      <FeaturedJobs />
-
-      {/* Pricing Section with scrollable ID */}
-      <div id="pricing-section">
-        <PricingPlan />
-      </div>
-
-      <BlogPage showFeaturedOnly={true} showBanner={false} />
+      <JobListings/>
     </div>
   );
 }
