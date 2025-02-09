@@ -8,6 +8,9 @@ import HowItWorks from "../components/HowItWorks";
 import PricingPlan from "../components/Pricingplan";
 // import BlogPage from "./blog/page";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import FindWorkSection from "../components/FindWorkSection";
+
 
 import "./styles/Home.css";
 
@@ -38,14 +41,17 @@ export default function Home() {
       </div>
 
       <HowItWorks />
+      <FindWorkSection/>
       <FeaturedJobs />
 
       {/* Pricing Section with scrollable ID */}
       <div id="pricing-section">
         <PricingPlan />
       </div>
+      
 
       {/* <BlogPage showFeaturedOnly={true} showBanner={false} /> */}
+      <Footer/>
     </div>
   );
 }
