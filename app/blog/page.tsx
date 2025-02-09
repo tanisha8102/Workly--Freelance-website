@@ -1,9 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import Navbar from "@/components/Navbar";
+import eventBanner from "@/assets/event-banner.jpg";
+import circleheart from "@/assets/circle-heart.png";
 
 interface BlogPageProps {
   showFeaturedOnly?: boolean;
@@ -11,9 +14,14 @@ interface BlogPageProps {
 }
 
 export default function BlogPage({ showFeaturedOnly = false, showBanner = true }: BlogPageProps) {
-  const eventBanner = new URL("../../assets/event-banner.jpg", import.meta.url).href;
-  const circleheart = new URL("../../assets/circle-heart.png", import.meta.url).href;
   const [showDetails, setShowDetails] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setIsDesktop(window.innerWidth >= 1024);
+    }
+  }, []);
 
   const events = [
     {
@@ -50,23 +58,17 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
     },
   ];
 
-  // Filter events based on the showFeaturedOnly prop
   const filteredEvents = showFeaturedOnly ? events.filter((event) => event.featured) : events;
 
   return (
     <div>
       <Navbar />
       <div className="min-h-screen px-10">
-        {/* Main Event Banner */}
         {showBanner && (
           <section className="max-w-7xl mx-auto bg-purple-900 text-white rounded-3xl overflow-hidden relative mt-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 relative h-auto lg:h-[600px]">
               <div className="relative h-[250px] lg:h-full">
-                <img
-                  src={eventBanner}
-                  alt="Event Banner"
-                  className="w-full h-full object-cover rounded-tl-3xl lg:rounded-bl-3xl"
-                />
+                <Image src={eventBanner} alt="Event Banner" className="w-full h-full object-cover rounded-tl-3xl lg:rounded-bl-3xl" />
                 <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-transparent via-purple-800/50 to-purple-900"></div>
               </div>
 
@@ -74,15 +76,11 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
                 <div className="lg:hidden flex justify-between items-center mb-3">
                   <p className="text-xs font-semibold text-orange-300">FEATURED EVENTS</p>
                   <button onClick={() => setShowDetails(!showDetails)} className="flex justify-center items-center">
-                    <IoIosArrowDown
-                      size={24}
-                      className={`text-white transition-transform ${showDetails ? "rotate-180" : "rotate-0"}`}
-                    />
+                    <IoIosArrowDown size={24} className={`text-white transition-transform ${showDetails ? "rotate-180" : "rotate-0"}`} />
                   </button>
                 </div>
 
-                {/* Details for Mobile (Collapsible) */}
-                {(showDetails || typeof window !== "undefined" && window.innerWidth >= 1024) && (
+                {(showDetails || isDesktop) && (
                   <div className="mt-3 lg:block">
                     <h2 className="text-lg lg:text-4xl font-bold mb-2 lg:mb-4 leading-snug lg:leading-relaxed">
                       Ziro Worldwide<br /> Freelancers Meetup <br />Indonesia 2021
@@ -101,9 +99,7 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
                     </div>
 
                     <div className="mt-6 flex space-x-3">
-                      <button className="bg-purple-600 text-white px-4 py-1.5 text-sm lg:px-6 lg:py-2 lg:text-lg rounded-full hover:bg-purple-700">
-                        Book Now
-                      </button>
+                      <button className="bg-purple-600 text-white px-4 py-1.5 text-sm lg:px-6 lg:py-2 lg:text-lg rounded-full hover:bg-purple-700">Book Now</button>
                       <button className="flex items-center space-x-2 text-purple-300 text-sm lg:text-lg">
                         <IoHeartOutline size={18} className="lg:w-6 lg:h-6" />
                         <span>Bookmark</span>
@@ -116,7 +112,6 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
           </section>
         )}
 
-        {/* Event List Section */}
         <div className="bg-gray-100">
           <section className="max-w-7xl mx-auto px-4 lg:px-0 mt-10">
             <header className="flex justify-center items-center mb-6">
@@ -128,13 +123,12 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredEvents.map((event) => (
                 <div key={event.id} className="bg-white rounded-xl shadow-md overflow-hidden relative">
-                  <img src={eventBanner} alt={event.title} className="w-full h-40 object-cover" />
+                  <Image src={eventBanner} alt={event.title} className="w-full h-40 object-cover" />
                   <div className="absolute p-4 bottom-52 right-8 transform translate-y-1/2 z-10 flex flex-col items-center bg-gray-800 text-white w-16 h-28 rounded-full">
                     <span className="text-lg font-bold leading-none">{event.date.split(" ")[0]}</span>
                     <span className="text-xs uppercase mt-1">{event.date.split(" ")[1]}</span>
-                    <img src={circleheart} alt="Heart Icon" className="mt-3 mb-4 w-8 h-8" />
+                    <Image src={circleheart} alt="Heart Icon" className="mt-3 mb-4 w-8 h-8" />
                   </div>
-
                   <div className="p-4 mt-6">
                     <p className="text-xs text-orange-400 font-bold">{event.category}</p>
                     <h2 className="text-lg text-black font-semibold mt-2">{event.title}</h2>
