@@ -5,13 +5,14 @@ import Image from "next/image";
 import { IoHeartOutline } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import Navbar from "@/components/Navbar";
+import { FC } from "react";
 
 interface BlogPageProps {
   showFeaturedOnly?: boolean;
   showBanner?: boolean;
 }
 
-export default function BlogPage({ showFeaturedOnly = false, showBanner = true }: BlogPageProps) {
+const BlogPage: FC<BlogPageProps> = ({ showFeaturedOnly = false, showBanner = true }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
@@ -23,10 +24,10 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
   }, []);
 
   const events = [
-    { id: 1, title: "Ziro Mobile App Beta Tester Launching Ceremonials", date: "24 NOV", category: "MOBILE APP", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", featured: true },
-    { id: 2, title: "Manage Over 500 Employees Clearly with Mr. Samuel", date: "22 NOV", category: "BUSINESS", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", featured: true },
-    { id: 3, title: "Ziro Annually Monthly Meetup: How to Increase Productivity", date: "21 NOV", category: "ACCOUNTING", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", featured: true },
-    { id: 4, title: "Annual Financial Planning Summit", date: "21 NOV", category: "FINANCE", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", featured: false },
+    { id: 1, title: "Ziro Mobile App Beta Tester Launching Ceremonials", date: "24 NOV", category: "MOBILE APP", description: "Lorem ipsum...", featured: true },
+    { id: 2, title: "Manage Over 500 Employees Clearly with Mr. Samuel", date: "22 NOV", category: "BUSINESS", description: "Lorem ipsum...", featured: true },
+    { id: 3, title: "Ziro Annually Monthly Meetup: How to Increase Productivity", date: "21 NOV", category: "ACCOUNTING", description: "Lorem ipsum...", featured: true },
+    { id: 4, title: "Annual Financial Planning Summit", date: "21 NOV", category: "FINANCE", description: "Lorem ipsum...", featured: false },
   ];
 
   const filteredEvents = showFeaturedOnly ? events.filter((event) => event.featured) : events;
@@ -104,4 +105,6 @@ export default function BlogPage({ showFeaturedOnly = false, showBanner = true }
       </div>
     </div>
   );
-}
+};
+
+export default BlogPage;
