@@ -1,19 +1,22 @@
 "use client";
-import { useState } from "react";
+import { useState, Suspense } from "react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
 import FeaturedJobs from "@/components/FeaturedJobs";
 import { CalendarIcon, UploadCloud } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
-export default function JobDetails() {
-  const searchParams = useSearchParams();
+function JobDetailsContent() {
+ const searchParams = useSearchParams();
   const router = useRouter();
   const [showApplicationForm, setShowApplicationForm] = useState(false);
-  const [selectedFile, setSelectedFile] = useState(null);
-
-
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const title = searchParams.get("title") || "Lead UI/UX Designer";
+
+
+
+
   const company = searchParams.get("company") || "Highspeed Studios";
   const salary = searchParams.get("salary") || "$14,000 - $25,000";
   const location = searchParams.get("location") || "London, England";
@@ -32,9 +35,14 @@ export default function JobDetails() {
   const profile = new URL("../../assets/profile.png", import.meta.url).href;
   const location2 = new URL("../../assets/maps-and-flags.png", import.meta.url).href;
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedFile(e.target.files[0]);
+    }
   };
+
+
+  
 
   return (
     <div>
@@ -62,10 +70,12 @@ export default function JobDetails() {
           {/* Company Info Section */}
           <aside className="bg-white rounded-lg p-6 shadow-md">
             <div className="flex flex-col items-center">
-            <img
+            <Image
       src={icon}
       alt={`${company} Logo`}
       className="w-24 h-24 object-cover rounded-full mb-4"
+      width={96} height={96}
+      
     />
               <h2 className="text-xl font-medium text-black">{company}</h2>
               <p className="text-sm text-gray-500">Creative Design Agency</p>
@@ -76,7 +86,7 @@ export default function JobDetails() {
               <div className="mt-6 space-y-4">
                 <div className="flex items-center space-x-6">
                   <div className="flex items-center space-x-3">
-                    <img src={profile} alt="Profile Icon" className="w-12 h-12 p-2 rounded-md" />
+                    <Image src={profile} alt="Profile Icon" className="w-12 h-12 p-2 rounded-md"  width={48} height={48}/>
                     <div>
                       <p className="text-lg font-semibold text-black">80 - 100</p>
                       <p className="text-sm text-gray-500">Employees</p>
@@ -84,7 +94,7 @@ export default function JobDetails() {
                   </div>
 
                   <div className="flex items-center space-x-3">
-                    <img src={rating} alt="Rating Icon" className="w-12 h-12 p-2 rounded-md" />
+                    <Image src={rating} alt="Rating Icon" className="w-12 h-12 p-2 rounded-md"  width={48} height={48}/>
                     <div>
                       <p className="text-lg font-semibold text-black">4.5</p>
                       <p className="text-sm text-gray-500">Reviews</p>
@@ -92,7 +102,7 @@ export default function JobDetails() {
                   </div>
                 </div>
                 <div className="flex items-center space-x-3">
-                  <img src={location2} alt="Location Icon" className="w-12 h-12 p-2 rounded-md" />
+                  <Image src={location2} alt="Location Icon" className="w-12 h-12 p-2 rounded-md"  width={48} height={48}/>
                   <div>
                     <p className="text-lg font-semibold text-black">{location}</p>
                     <p className="text-sm text-gray-500">Location</p>
@@ -130,27 +140,27 @@ export default function JobDetails() {
                   >
                     Apply Now
                   </button>
-      <img src={heart} alt="Heart Icon" className="w-8 h-8 cursor-pointer" />
+      <Image src={heart} alt="Heart Icon" className="w-8 h-8 cursor-pointer"  width={48} height={48} />
     </div>
   </div>
 
   <div className="flex flex-col lg:flex-row lg:items-center mt-6 lg:space-x-8 space-y-4 lg:space-y-0">
     <div className="flex items-center space-x-2">
-      <img src={dollar} alt="Dollar Icon" className="w-11 h-11" />
+      <Image src={dollar} alt="Dollar Icon" className="w-11 h-11"  width={48} height={48}/>
       <div>
         <p className="text-lg font-medium text-black">{salary}</p>
         <p className="text-sm text-gray-500">Monthly Salary</p>
       </div>
     </div>
     <div className="flex items-center space-x-2">
-      <img src={compass} alt="Experience Icon" className="w-10 h-10" />
+      <Image src={compass} alt="Experience Icon" className="w-10 h-10"  width={48} height={48}/>
       <div>
         <p className="text-lg font-medium text-black">{experience}</p>
         <p className="text-sm text-gray-500">Experience</p>
       </div>
     </div>
     <div className="flex items-center space-x-2">
-      <img src={gps} alt="Location Icon" className="w-10 h-10" />
+      <Image src={gps} alt="Location Icon" className="w-10 h-10"  width={48} height={48}/>
       <div>
         <p className="text-lg font-medium text-black">{location}</p>
         <p className="text-sm text-gray-500">Location</p>
@@ -168,14 +178,15 @@ export default function JobDetails() {
                   </div>
 
                   <div className="mt-8">
-                    <h3 className="text-sm font-semibold text-black">Gallery</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-4">
-                      <img src={gallery1} alt="Gallery 1" className="w-full h-32 rounded-xl object-cover" />
-                      <img src={gallery2} alt="Gallery 2" className="w-full h-32 rounded-xl object-cover" />
-                      <img src={gallery3} alt="Gallery 3" className="w-full h-32 rounded-xl object-cover" />
-                      <img src={gallery4} alt="Gallery 4" className="w-full h-32 rounded-xl object-cover" />
+                     <h3 className="text-sm font-semibold text-black">Gallery</h3>
+                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-4">
+                       <Image src={gallery1} alt="Gallery 1" className="rounded-xl object-cover w-full h-full" width={150} height={150} />
+                       <Image src={gallery2} alt="Gallery 2" className="rounded-xl object-cover w-full h-full" width={150} height={150} />
+                       <Image src={gallery3} alt="Gallery 3" className="rounded-xl object-cover w-full h-full" width={150} height={150} />
+                       <Image src={gallery4} alt="Gallery 4" className="rounded-xl object-cover w-full h-full" width={150} height={150} />
+                     </div>
                     </div>
-                  </div>
+
                 </>
               ) : (
                 <div className="mt-8 max-w-3xl mx-auto">
@@ -238,10 +249,11 @@ export default function JobDetails() {
   <div>
     <label className="block mb-2 text-sm font-medium text-gray-700">About You</label>
     <textarea
-      rows="4"
-      className="w-full px-3 py-1.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
-      placeholder="Tell us about yourself..."
-    />
+  rows={4}
+  className="w-full px-3 py-1.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+  placeholder="Tell us about yourself..."
+/>
+
   </div>
 
   <div>
@@ -277,5 +289,14 @@ export default function JobDetails() {
     </section>
     <FeaturedJobs/>
     </div>
+  );
+}
+
+
+export default function JobDetails() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <JobDetailsContent />
+    </Suspense>
   );
 }

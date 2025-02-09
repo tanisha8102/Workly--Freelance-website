@@ -6,7 +6,7 @@ import homeimg from "../assets/home-img.png";
 import FeaturedJobs from "../components/FeaturedJobs";
 import HowItWorks from "../components/HowItWorks";
 import PricingPlan from "../components/Pricingplan";
-import BlogPage from "./blog/page";
+// import BlogPage from "./blog/page";
 import Navbar from "../components/Navbar";
 
 import "./styles/Home.css";
@@ -45,7 +45,7 @@ export default function Home() {
         <PricingPlan />
       </div>
 
-      <BlogPage showFeaturedOnly={true} showBanner={false} />
+      {/* <BlogPage showFeaturedOnly={true} showBanner={false} /> */}
     </div>
   );
 }
