@@ -32,7 +32,5 @@ It provides a clean, responsive UI for exploring jobs, applying to gigs, reading
 - **Responsive Design** – Mobile-first, modern layout  
 - **Vercel** – Deployment ready  
 
----
 
-## 📂 Project Structure
 
